@@ -88,14 +88,14 @@ td { vertical-align: top; }
    Author:
    ========================================================================== */
 
-html {
+.presentation {
   font-family: TexGyr;
   color: #dbdbdb;
   text-shadow: #111111 0px 0px 7px;
   overflow: hidden;
 }
 
-body {
+.presentation {
   background-image: url('../img/background.jpg');
   background-size: 100%;
 }
@@ -113,6 +113,12 @@ body {
   margin: auto;
   top: 45px;
   text-align: left;
+}
+
+.note {
+  width: 0px;
+  height: 0px;
+  display: none;
 }
 
 h1 {
