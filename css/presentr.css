@@ -75,17 +75,13 @@ iframe {
 }
 
 #leftInner div {
+  clear: both;
   float: left;
   margin-top: 5mm;
   margin-right: 5mm;
 }
 
-#navigation {
-  clear: both;
-  float: left;
-}
-
-#navigation input {
+#leftInner input {
   margin-right: 5mm;
 }
 

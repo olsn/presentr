@@ -23,6 +23,8 @@ function addListeners() {
 		localStorage.clear();
 		return true;
 	};
+
+	$('#open').mouseup(function(e) {window.open('index.html'); $(this).remove();});
 	$('#start').mouseup(onStart);
 
 	$(document).bind("contextmenu",function(e){
