@@ -16,7 +16,9 @@ var slide, numSlides, currentSlide, dw=1200, dh=900;
 //\INIT CALL
 
 function initialize() {
-	$.address.strict(false).history(false);
+	if (window==window.top) {
+		$.address.strict(false).history(false);
+	}
 	currentSlide = localStorage["currentSlide"] || getSlideFromURL();
 	numSlides = $('#slidesContainer .innerSlide').length;
 
@@ -140,6 +142,9 @@ function onStorageChange(e) {
 }
 
 function getSlideFromURL(incr) {
+	if (window!=window.top) {
+		return currentSlide;
+	}
 	incr = incr || 0;
 	var slideIdInURL = parseInt($.address.value()) || setURLIndex(0);
 
@@ -154,7 +159,9 @@ function getSlideFromURL(incr) {
 }
 
 function setURLIndex(index) {
-	$.address.value(index+1);
+	if (window==window.top) {
+		$.address.value(index+1);
+	}
 
 	return index+1;
 }
