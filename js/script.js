@@ -20,10 +20,15 @@ function initialize() {
 	currentSlide = localStorage["currentSlide"] || getSlideFromURL();
 	numSlides = $('#slidesContainer .innerSlide').length;
 
+	$('.subSlide').each(function(i, value) {
+		$(this).css('visibility','hidden');
+	});
+
 	$('.innerSlide').each(function(i, value) {
 		var noteElement = $(this).find('.note');
 		var note = noteElement.html() ? noteElement.html() : $(this).html();
 		localStorage['note:'+i] = note;
+		localStorage['slide:'+i] = $(this).html();
 	});
 	localStorage['numSlides'] = numSlides;
 
@@ -85,11 +90,25 @@ function onStorageChange(e) {
 
 	if ( localStorage["currentSlide"] != undefined && currentSlide != parseInt(localStorage["currentSlide"]) ) {
 		updateSlide(parseInt(localStorage["currentSlide"]));
-	} else {
+	} else if ( localStorage['presentrMode'] != '1' ) {
 		var urlIndex = getSlideFromURL();
 		if ( urlIndex != currentSlide ) {
 			updateSlide(urlIndex);
 		}
+	}
+
+	if ( localStorage['step:'+currentSlide] > 0 ) {
+		$('#slidesContainer').children().each(function(i, value) {
+			if ( i == currentSlide ) {
+				$(this).find('.subSlide').each(function(i, value) {
+					if ( i < localStorage['step:'+currentSlide] && $(this).css('visibility') == 'hidden') {
+						$(this).fadeOut(0);
+						$(this).fadeIn();
+						$(this).css('visibility', 'visible');
+					}
+				});
+			}
+		});
 	}
 }
 

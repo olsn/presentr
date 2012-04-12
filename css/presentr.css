@@ -58,14 +58,11 @@ iframe {
   padding-left: 15mm;
 }
 
-#leftInner div {
+#leftInner .row {
   clear: both;
   float: left;
+  width: 100%;
   margin-top: 5mm;
-  margin-right: 5mm;
-}
-
-#leftInner input {
   margin-right: 5mm;
 }
 

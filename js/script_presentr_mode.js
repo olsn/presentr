@@ -2,17 +2,16 @@
 	Author: Olaf J. Horstmann
 */
 
-var slide, numSlides, currentSlide, isHttp;
+var slideContents, slide, numSlides, currentSlide, isHttp;
 var refreshRate=33, ms=0;
-
 
 // INIT CALL
 	$(document).ready(function() {
 		localStorage.clear();
-		$.address.strict(false);
-		currentSlide = getSlideFromURL();
+		currentSlide = 0;
 
 		addListeners();
+		localStorage['step'] = 0;
 		localStorage['initRequest'] = '1';
 		//updateSlide(0);
 	});
@@ -46,8 +45,8 @@ function onStart(e) {
 	$('#next').removeAttr("disabled");
 	$('#prev').removeAttr("disabled");
 
-	$('#next').mousedown(function() {updateSlide(currentSlide+1);});
-	$('#prev').mousedown(function() {updateSlide(currentSlide-1);});
+	$('#next').mousedown(function() {step(1);});
+	$('#prev').mousedown(function() {step(-1);});
 	$('html').keyup(onUserInput);
 	//$('html').mousedown(onUserInput);
 }
@@ -55,7 +54,28 @@ function onStart(e) {
 function onUserInput(e) {
 	var incr = (e.which == 39 || e.which == 1) ? 1 : (e.which == 37 || e.which == 3) ? -1 : 0;
 
-	incr && updateSlide(currentSlide+incr);
+	incr && step(incr);
+}
+
+function step(incr) {
+	var elementStillHidden = false;
+	if ( incr > 0 ) {
+		$(slideContents).find('.innerSlide').each(function(i, value) {
+			if ( i == currentSlide ) {
+				$(this).find('.subSlide').each(function(i, value) {
+					if ( !elementStillHidden && $(this).css('visibility') != 'visible') {
+						$(this).css('visibility', 'visible');
+						localStorage['step:'+currentSlide]++;
+						elementStillHidden = true;
+					}
+				});
+			}
+		});
+	}
+
+	if ( !elementStillHidden ) {
+		updateSlide(currentSlide+incr);
+	}
 }
 
 function onEnterFrame(e) {
@@ -74,12 +94,20 @@ function onStorageChange(e) {
 		numSlides = localStorage['numSlides'];
 
 		var html = '';
+		var slidesHtml = '';
 		for (var c = 0; c < numSlides; c++ ) {
 			html += ["<div class='innerSlide'>",
 						localStorage['note:'+c],
-					"</div>"].join('')
+					"</div>"].join('');
+
+			slidesHtml += ["<div class='innerSlide'>",
+						localStorage['slide:'+c],
+					"</div>"].join('');
+
+			localStorage['step:'+c] = 0;
 		}
 
+		slideContents = $('<div>'+slidesHtml+'</div>');
 		$('#slidesContainer').html(html);
 		currentSlide = 0;
 		slide = $('#slidesContainer').cycle({
@@ -100,26 +128,5 @@ function updateSlide(index) {
 		currentSlide = index;
 		$('#slidesContainer').cycle(currentSlide);
 		localStorage['currentSlide'] = currentSlide;
-		setURLIndex(currentSlide);
 	}
-}
-
-function getSlideFromURL(incr) {
-	incr = incr || 0;
-	var slideIdInURL = parseInt($.address.value()) || setURLIndex(0);
-
-	if (incr) {
-		if ( (slideIdInURL+incr) <= numSlides && (slideIdInURL+incr) >= 1 ) {
-			slideIdInURL += incr;
-			setURLIndex(slideIdInURL);
-		}
-	}
-
-	return slideIdInURL-1;
-}
-
-function setURLIndex(index) {
-	$.address.value(index+1);
-
-	return index+1;
 }

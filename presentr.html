@@ -26,15 +26,15 @@
 		<div id="left">
 			<div id="leftInner">
 				<iframe src="index.html"></iframe>
-				<div>
+				<div class="row">
 					<input type="button" value=" Start " id="start"/>
+				</div>
+				<div class="row" style="text-align: center;">
+					<div style="float: left;"><input type="button" value=" << " id="prev" disabled="true"/></div>
 					<span id="counter"></span>
+					<div style="float: right;"><input type="button" value=" >> " id="next" disabled="true"/></div>
 				</div>
-				<div>
-					<input type="button" value=" << " id="prev" disabled="true"/>
-					<input type="button" value=" >> " id="next" disabled="true"/>
-				</div>
-				<div id="open">
+				<div id="open" class="row">
 					<input type="button" value=" Open "/>
 				</div>
 				
