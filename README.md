@@ -40,3 +40,8 @@ This software is released under a dual GPL/MIT license.
 * [jQuery: MIT/GPL license](http://jquery.org/license/)
 * [Modernizr: MIT/BSD license](http://www.modernizr.com/license/)
 * [Normalize.css: Public Domain](https://github.com/necolas/normalize.css/blob/master/README.md)
+
+
+coderwall
+-------
+[![endorse](http://api.coderwall.com/olsn/endorsecount.png)](http://coderwall.com/olsn)
