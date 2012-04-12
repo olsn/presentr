@@ -1,25 +1,9 @@
-/* ===== Fonts =================================================================
-   Author:
-   ========================================================================== */
-@font-face {
-  font-family: TexGyr;
-  src: url('../font/texgyreadventor-regular.otf');
-  font-weight:normal;
-}
-
-@font-face {
-  font-family: TexGyr;
-  src: url('../font/texgyreadventor-bold.otf');
-  font-weight:bold;
-}
-
-
 /* ===== Primary Styles ========================================================
    Author:
    ========================================================================== */
 
 .presentation {
-  font-family: TexGyr;
+  font-family: Century Gothic;
   color: #dbdbdb;
   text-shadow: #111111 0px 0px 9px;
   overflow: hidden;
