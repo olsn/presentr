@@ -62,81 +62,12 @@ button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
 textarea { overflow: auto; vertical-align: top; resize: vertical; }
 input:valid, textarea:valid {  }
 input:invalid, textarea:invalid { background-color: #f0dddd; }
+input { font-size: 14mm; }
 
 table { border-collapse: collapse; border-spacing: 0; }
 td { vertical-align: top; }
 
 .chromeframe { margin: 0.2em 0; background: #ccc; color: black; padding: 0.2em 0; }
-
-/* ===== Fonts =================================================================
-   Author:
-   ========================================================================== */
-@font-face {
-  font-family: TexGyr;
-  src: url('../font/texgyreadventor-regular.otf');
-  font-weight:normal;
-}
-
-@font-face {
-  font-family: TexGyr;
-  src: url('../font/texgyreadventor-bold.otf');
-  font-weight:bold;
-}
-
-
-/* ===== Primary Styles ========================================================
-   Author:
-   ========================================================================== */
-
-.presentation {
-  font-family: TexGyr;
-  color: #dbdbdb;
-  text-shadow: #111111 0px 0px 7px;
-  overflow: hidden;
-}
-
-.presentation {
-  background-image: url('../img/background.jpg');
-  background-size: 100%;
-}
-
-#slidesContainer {
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  top: 25px;
-  bottom: 25px;
-  overflow: visible !important;
-}
-
-.innerSlide {
-  margin: auto;
-  top: 45px;
-  text-align: left;
-}
-
-.note {
-  width: 0px;
-  height: 0px;
-  display: none;
-}
-
-h1 {
-  font-weight: normal;
-  font-size: 52px;
-}
-
-ul {
-  margin-left: 45px;
-}
-
-ul li {
-  color: #fff;
-  font-size: 42px;
-  line-height: 90px;
-}
-
-
 
 /* =============================================================================
    Media Queries

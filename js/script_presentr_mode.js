@@ -2,7 +2,9 @@
 	Author: Olaf J. Horstmann
 */
 
-var slide, numSlides, currentSlide;
+var slide, numSlides, currentSlide, isHttp;
+var refreshRate=33, ms=0;
+
 
 // INIT CALL
 	$(document).ready(function() {
@@ -10,7 +12,6 @@ var slide, numSlides, currentSlide;
 		$.address.strict(false);
 		currentSlide = getSlideFromURL();
 
-		onResize();
 		addListeners();
 		localStorage['initRequest'] = '1';
 		//updateSlide(0);
@@ -22,10 +23,7 @@ function addListeners() {
 		localStorage.clear();
 		return true;
 	};
-	$(window).resize(onResize);
-
-	$('body').keyup(onUserInput);
-	$('body').mousedown(onUserInput);
+	$('#start').mouseup(onStart);
 
 	$(document).bind("contextmenu",function(e){
 		return false;
@@ -34,14 +32,39 @@ function addListeners() {
 	if ( document.location.href.toLowerCase().indexOf('http') >= 0 ) {
 		$(window).bind("storage",onStorageChange);
 	} else {
-		setInterval(onStorageChange, 33);
+		isHttp = false;
 	}
+
+	setInterval(onEnterFrame, refreshRate);
+}
+
+function onStart(e) {
+	ms++;
+	$('#navigation').show();
+	$('#next').removeAttr("disabled");
+	$('#prev').removeAttr("disabled");
+
+	$('#next').mousedown(function() {updateSlide(currentSlide+1);});
+	$('#prev').mousedown(function() {updateSlide(currentSlide-1);});
+	$('html').keyup(onUserInput);
+	//$('html').mousedown(onUserInput);
 }
 
 function onUserInput(e) {
 	var incr = (e.which == 39 || e.which == 1) ? 1 : (e.which == 37 || e.which == 3) ? -1 : 0;
 
 	incr && updateSlide(currentSlide+incr);
+}
+
+function onEnterFrame(e) {
+	!isHttp && onStorageChange();
+	ms && (ms += refreshRate);
+
+	var minutes = (ms/60000)>>0;
+	minutes = (minutes<10)?'0' + minutes : minutes;
+	var seconds = ((ms%60000)/1000)>>0;
+	seconds = (seconds<10)?'0' + seconds : seconds;
+	$('#counter').html('time: ' + minutes + ':' + seconds);
 }
 
 function onStorageChange(e) {
@@ -97,10 +120,4 @@ function setURLIndex(index) {
 	$.address.value(index+1);
 
 	return index+1;
-}
-
-function onResize(e) {
-	$('#main').css('margin-top', $(window).height() * 0.08);
-	$('#slidesContainer').width($(window).width() * 0.45);
-	$('#slidesContainer').height($(window).height() * 0.9);
 }

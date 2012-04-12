@@ -2,7 +2,7 @@
 	Author: Olaf J. Horstmann
 */
 
-var slide, numSlides, currentSlide;
+var slide, numSlides, currentSlide, dw=1200, dh=900;
 
 // INIT CALL
 	$(document).ready(function() {
@@ -20,8 +20,10 @@ function initialize() {
 	currentSlide = localStorage["currentSlide"] || getSlideFromURL();
 	numSlides = $('#slidesContainer .innerSlide').length;
 
-	$('.innerSlide .note').each(function(i, value) {
-		localStorage['note:'+i] = $(this).html();
+	$('.innerSlide').each(function(i, value) {
+		var noteElement = $(this).find('.note');
+		var note = noteElement.html() ? noteElement.html() : $(this).html();
+		localStorage['note:'+i] = note;
 	});
 	localStorage['numSlides'] = numSlides;
 
@@ -112,7 +114,21 @@ function setURLIndex(index) {
 }
 
 function onResize(e) {
+	var nh = $(window).height();
+	var nw = $(window).width();
+	var s = Math.min(nh/dh,nw/dw);
+
+
 	$('#main').css('margin-top', $(window).height() * 0.08);
-	$('#slidesContainer').width($(window).width() * 0.45);
+	$('#slidesContainer').width($(window).width() * 0.60);
 	$('#slidesContainer').height($(window).height() * 0.9);
+
+	$('h1').each(function(i, value) {
+		$(this).css('font-size', (14*s) + 'mm');
+	});
+
+	$('li').each(function(i, value) {
+		$(this).css('font-size', (10*s) + 'mm');
+		$(this).css('line-height', (24*s) + 'mm');
+	});
 }

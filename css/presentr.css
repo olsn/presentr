@@ -1,0 +1,108 @@
+/* ===== Fonts =================================================================
+   Author:
+   ========================================================================== */
+@font-face {
+  font-family: TexGyr;
+  src: url('../font/texgyreadventor-regular.otf');
+  font-weight:normal;
+}
+
+@font-face {
+  font-family: TexGyr;
+  src: url('../font/texgyreadventor-bold.otf');
+  font-weight:bold;
+}
+
+
+/* ===== Primary Styles ========================================================
+   Author:
+   ========================================================================== */
+html {
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  font-family: TexGyr;
+  font-size: 6mm;
+  color: #000000;
+  overflow: hidden;
+}
+
+#container {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  float: left;
+  overflow: hidden;
+}
+
+iframe {
+  width: 100%;
+  height: 50%;
+  border: 3px solid #ffffff;
+  -moz-box-shadow: 0 0 7mm 1mm #000000;
+  -webkit-box-shadow: 0 0 7mm 1mm #000000;
+  box-shadow: 0 0 7mm 1mm #000000;
+}
+
+#left {
+  width: 45%;
+  height: 100%;
+  max-height: 100%;
+  float: left;
+  background-color: #bbb;
+  border-right: 1px solid #888;
+}
+
+#leftInner {
+  width: 90%;
+  height: 100%;
+  max-height: 100%;
+  margin: auto;
+  margin-top: 5mm;
+}
+
+#right {
+  width: 50%;
+  height: 5000px;
+  max-height: 100%;
+  float: left;
+  padding-top: 5mm;
+  padding-left: 15mm;
+}
+
+#leftInner div {
+  float: left;
+  margin-top: 5mm;
+  margin-right: 5mm;
+}
+
+#navigation {
+  clear: both;
+  float: left;
+}
+
+#navigation input {
+  margin-right: 5mm;
+}
+
+#counter {
+  font-size: 12mm;
+}
+
+#slidesContainer {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 25px;
+  overflow: visible !important;
+}
+
+.innerSlide {
+  margin: auto;
+  top: 45px;
+  text-align: left;
+}
