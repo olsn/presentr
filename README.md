@@ -3,6 +3,19 @@ presentr
 
 presentr is a html5/js template to be used for presentations.
 
+Show me!
+--------
+
+#### presentr
+You can take a look at a demo here: [http://olsn.github.com/presentr/presentr.html](http://olsn.github.com/presentr/presentr.html)
+
+#### solo-presentation
+Or you can open the a presentation without the presentr here: [http://olsn.github.com/presentr](http://olsn.github.com/presentr)
+You can navigate in the presentation with `left` and `right`-Keys or you may use the `left mouse button` or `right mouse button`.
+
+PLEASE NOTE: When the `presentr` is opened on the same origin you will not be able to navigate within the presentation screen.
+
+
 So what's in it?
 ----------------
 
