@@ -41,7 +41,7 @@ function addListeners() {
 
 function onStart(e) {
 	ms++;
-	$('#navigation').show();
+	//$('#startRow').hide();
 	$('#next').removeAttr("disabled");
 	$('#prev').removeAttr("disabled");
 
