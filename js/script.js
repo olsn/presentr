@@ -29,8 +29,13 @@ function initialize() {
 		var note = noteElement.html() ? noteElement.html() : $(this).html();
 		localStorage['note:'+i] = note;
 		localStorage['slide:'+i] = $(this).html();
+		if ( localStorage['presentrMode'] != '1') {
+			localStorage['step:'+currentSlide] = 0;
+		}
 	});
 	localStorage['numSlides'] = numSlides;
+
+
 
 	slide = $('#slidesContainer').cycle({
 		fx: 'fadeHorizontal',
@@ -65,7 +70,29 @@ function onUserInput(e) {
 	if ( localStorage['presentrMode'] != '1') {
 		var incr = (e.which == 39 || e.which == 1) ? 1 : (e.which == 37 || e.which == 3) ? -1 : 0;
 
-		incr && updateSlide(currentSlide+incr);
+		incr && step(incr);
+	}
+}
+
+function step(incr) {
+	var elementStillHidden = false;
+	if ( incr > 0 ) {
+		$('#slidesContainer').find('.innerSlide').each(function(i, value) {
+			if ( i == currentSlide ) {
+				$(this).find('.subSlide').each(function(i, value) {
+					if ( !elementStillHidden && $(this).css('visibility') != 'visible') {
+						$(this).fadeOut(0);
+						$(this).fadeIn();
+						$(this).css('visibility', 'visible');
+						elementStillHidden = true;
+					}
+				});
+			}
+		});
+	}
+
+	if ( !elementStillHidden ) {
+		updateSlide(currentSlide+incr);
 	}
 }
 
