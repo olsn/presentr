@@ -71,15 +71,18 @@ iframe {
 }
 
 #slidesContainer {
+  position: relative;
   width: 100%;
-  margin-left: auto;
+  margin-left: 0px;
   margin-right: auto;
+  top: 0px;
   bottom: 25px;
   overflow: visible !important;
 }
 
 .innerSlide {
-  margin: auto;
-  top: 45px;
+  position: absolute;
+  width: 100%;
+  top: 0px;
   text-align: left;
 }
