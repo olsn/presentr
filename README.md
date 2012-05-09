@@ -39,7 +39,6 @@ Used Components
 ---------------
 
 * [jQuery](http://jquery.com/)
-* [jQuery Cycle](http://malsup.com/jquery/cycle/)
 * [jQuery Address](http://www.asual.com/jquery/address/)
 * [html5 Boilerplate](http://html5boilerplate.com/)
 

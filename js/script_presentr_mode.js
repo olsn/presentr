@@ -2,7 +2,7 @@
 	Author: Olaf J. Horstmann
 */
 
-var slideContents, slide, numSlides, currentSlide, isHttp;
+var slideContents, slide, numSlides, currentSlide=0, isHttp;
 var refreshRate=33, ms=0;
 
 // INIT CALL
@@ -110,23 +110,41 @@ function onStorageChange(e) {
 		slideContents = $('<div>'+slidesHtml+'</div>');
 		$('#slidesContainer').html(html);
 		currentSlide = 0;
-		slide = $('#slidesContainer').cycle({
-			fx: 'fadeHorizontal',
-			speed: 1000,
-			slideResize: 0,
-			containerResize: 0,
-			startingSlide: currentSlide,
-			timeout: 0 
-		});
 
-		updateSlide(0);
+		$('.innerSlide').animate({left: '15%', opacity: 0}, 0);
+		$('.innerSlide').hide();
+
+		updateSlide(0, true);
 	}
 }
 
-function updateSlide(index) {
+function updateSlide(index, init) {
 	if (index < numSlides && index >= 0) {
+		var dir = (index > currentSlide)? 0 : 15;
+		var adir = (index > currentSlide)? 15 : 0;
+
+		if ( !init ) {
+			$('.innerSlide').eq(currentSlide).stop(true, true).animate({left: dir + '%', opacity: 0}, 800, function() {$(this).hide()});
+		}
 		currentSlide = index;
-		$('#slidesContainer').cycle(currentSlide);
+
+		var $cslide = $('.innerSlide').eq(currentSlide);
+
+		if ( dir == 0 ) {
+			$cslide.find('.subSlide').each(function(i, value) {
+				$(this).fadeOut(0);
+				$(this).css('visibility', 'hidden');
+			});
+		} else {
+			$cslide.find('.subSlide').each(function(i, value) {
+				$(this).fadeIn(0);
+				$(this).css('visibility', 'visible');
+			});
+		}
+
+		$cslide.animate({left: adir + '%', opacity: 0}, 0);
+		$cslide.stop(true, true).animate({left: '10%', opacity: 1}, 800);
+		$cslide.show();
 		localStorage['currentSlide'] = currentSlide;
 	}
 }

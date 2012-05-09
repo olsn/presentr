@@ -19,59 +19,170 @@
 	<script src="js/libs/modernizr-2.5.3.min.js"></script>
 </head>
 <body class="presentation">
-<header>
-
-</header>
+<img src="img/background.jpg" style="width:100%; height:100%; position:absolute; z-index:-5; top:0px; left:0px;">
 <div id="main" role="main">
-	<div id="slidesContainer">
-		<div class='innerSlide'>
-			<div class='note'>This is a test-note</div>
-			<h1>Slide 1</h1>
-			<ul>
-				<li>point1 is so cool</li>
-				<li class="subSlide">point2 is even cooler</li>
-				<li class="subSlide">point3 is so uber it even breaks <br/>the line!</li>
-			</ul>
-		</div>
 
-		<div class='innerSlide'>
-			<div class='note'>This is a test-note for slide: 2</div>
-			<h1>Slide 2</h1>
-			<ul>
-				<li>point1 is so cool</li>
-				<li>point2 is even cooler</li>
-				<li>point3 is so uber it even breaks  <br/>the line!</li>
-			</ul>
-		</div>
+	<!-- ############################################################################################################ -->
+	<!-- ############################################ PROGRESS INDICATOR ############################################ -->
+	<div class="progress">
+		<div style="width:100%;
+			background-image: linear-gradient(left bottom, rgb(31,29,33) 0%, rgb(0,153,219) 50%, rgb(160,188,48) 100%);
+			background-image: -o-linear-gradient(left bottom, rgb(31,29,33) 0%, rgb(0,153,219) 50%, rgb(160,188,48) 100%);
+			background-image: -moz-linear-gradient(left bottom, rgb(31,29,33) 0%, rgb(0,153,219) 50%, rgb(160,188,48) 100%);
+			background-image: -webkit-linear-gradient(left bottom, rgb(31,29,33) 0%, rgb(0,153,219) 50%, rgb(160,188,48) 100%);
+			background-image: -ms-linear-gradient(left bottom, rgb(31,29,33) 0%, rgb(0,153,219) 50%, rgb(160,188,48) 100%);
 
-		<div class='innerSlide'>
-			<div class='note'>This is a test-note for slide: 3</div>
-			<h1>Slide 3</h1>
-			<ul>
-				<li>BÄM!</li>
-			</ul>
-		</div>
-
-		<div class='innerSlide'>
-			<h1>Slide 4</h1>
-			<ul>
-				<li>point1 is so cool</li>
-				<li>point2 is even cooler</li>
-				<li>point3 is so uber it even breaks <br/>the line!</li>
-			</ul>
-		</div>
-
-		<div class='innerSlide'>
-			<h1>Slide 5</h1>
-			<ul>
-				<li>BOOOOM!</li>
-			</ul>
+			background-image: -webkit-gradient(
+				linear,
+				left bottom,
+				right top,
+				color-stop(0, rgb(31,29,33)),
+				color-stop(0.5, rgb(0,153,219)),
+				color-stop(1, rgb(160,188,48))
+			);">
 		</div>
 	</div>
-</div>
-<footer>
+	<div class="progresspointer"></div>
 
-</footer>
+	<!-- ############################################################################################################ -->
+	<!-- ################################################## SLIDES ################################################## -->
+	<div id="slidesContainer">
+		<div class='innerSlide'>
+			<div style="width: 70%; text-align: center; margin-top: 20%; margin-left: 15%;">
+				<h1>presentr html5 Template</h1>
+				<hr>
+				<h2 style="font-weight:normal;">Olaf Panda, About presentr</h2>
+				<br><br>
+				<div style="position: relative; width: 100%;">
+					<div style="position:absolute; width:100%; height: 100px; background:#ffffff; opacity:0.4"></div>
+					<div style="position:absolute; width:100%;">
+						<img src="img/logo.png" alt="Logo" style="height: 90px; margin-top: 5px;">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class='innerSlide' id="agenda">
+			<h1>Agenda</h1>
+			<ul>
+				<li>Part I</li>
+				<ul>
+					<li>Basic examples</li>
+					<li>More examples</li>
+				</ul>
+				<li>Part II</li>
+				<ul>
+					<li>Some advanced stuff</li>
+					<li>Thank you</li>
+				</ul>
+			</ul>
+		</div>
+
+		<!-- ####################################################################################################### -->
+		<!-- ############################################## Part I ################################################# -->
+		<div class='innerSlide'>
+			<div style="width: 70%; text-align: center; margin-top: 20%; margin-left: 15%;">
+				<h1>Part I</h1>
+				<hr>
+				<h2 style="font-weight:normal;">basic examples</h2>
+			</div>
+		</div>
+
+		<div class='innerSlide'>
+			<div class='note'>This is slide 1, it contains the basic functions</div>
+			<h1>Using presentr</h1>
+			<ul>
+				<li>Mouse left & Arrow right = forward</li>
+				<li>Mouse right & Arrow left = backward</li>
+			</ul>
+		</div>
+
+		<div class='innerSlide'>
+			<div class='note'>Just put notes in a div with the class "note" and they will be displayed in the presentr-Mode.</div>
+			<h1>Make bullets appear</h1>
+			<ul>
+				<li class="subSlide">you can hide anything you want</li>
+				<li class="subSlide">and have it apprear on click/arrow</li>
+				<li class="subSlide">just set class="subSlide"</li>
+			</ul>
+		</div>
+
+		<!-- ###################################################################################################### -->
+		<!-- ############################################# Part II ################################################ -->
+		<div class='innerSlide'>
+			<div style="width: 70%; text-align: center; margin-top: 20%; margin-left: 15%;">
+				<h1>Part II</h1>
+				<hr>
+				<h2 style="font-weight:normal;">more examples</h2>
+			</div>
+		</div>
+
+		<div class='innerSlide'>
+			<h1>Some Images</h1>
+			<hr style="margin-bottom: 5%;">
+			<div style="position: absolute; width: 100%; height: 100%">
+				<img class="shadow" src="img/1.jpg" style="width: 25%; margin-left: 5%; margin-bottom: 5%;">
+				<img class="shadow" src="img/2.jpg" style="width: 25%; margin-left: 5%; margin-bottom: 5%;">
+				<img class="shadow" src="img/3.jpg" style="width: 25%; margin-left: 5%; margin-bottom: 5%;">
+				<img class="shadow" src="img/3.jpg" style="width: 25%; margin-left: 5%;">
+				<img class="shadow" src="img/1.jpg" style="width: 25%; margin-left: 5%;">
+				<img class="shadow" src="img/2.jpg" style="width: 25%; margin-left: 5%;">
+			</div>
+		</div>
+
+		<div class='innerSlide'>
+			<h1>Slideshow</h1>
+			<hr style="margin-bottom: 5%;">
+			<img class="shadow"   src="img/1.jpg" style="position: absolute; width: 80%; left: 10%">
+			<img class="subSlide" src="img/2.jpg" style="position: absolute; width: 80%; left: 10%">
+			<img class="subSlide" src="img/3.jpg" style="position: absolute; width: 80%; left: 10%">
+			<img class="subSlide" src="img/1.jpg" style="position: absolute; width: 80%; left: 10%">
+			<img class="subSlide" src="img/2.jpg" style="position: absolute; width: 80%; left: 10%">
+			<img class="subSlide" src="img/3.jpg" style="position: absolute; width: 80%; left: 10%">
+			<div style="clear: both;"></div>
+		</div>
+
+		<div class='innerSlide'>
+			<p class="size2">iframe</p>
+			<iframe class="shadow" src="http://vimeo.com/"></iframe>
+		</div>
+
+		<div class='innerSlide'>
+			<br><br><br><br>
+			<div class="size2-4" style="float: left; width: 45%; text-align: right; margin-left: 2.5%;">
+				pro<hr>
+				anyone can view it<br>
+				put it online in a second<br>
+				free&open source<br>
+				no need for office or keynote<br>
+				use iframes for showing projects<br>
+				implement flash/js demos<br>
+				nice ←
+			</div>
+			<div class="size2-4" style="float: left; width: 45%; margin-left: 5%;">
+				contra<hr>
+				some knowlege of html/css needed<br>
+			</div>
+		</div>
+
+		<!-- ###################################################################################################### -->
+		<!-- ############################################### fin ################################################## -->
+		<div class='innerSlide'>
+			<div style="width: 70%; text-align: center; margin-top: 20%; margin-left: 15%;">
+				<h1>thank you</h1>
+				<hr>
+				<p class="size3" style="font-weight:normal;">hope to see you using presentr soon!</h2>
+				<div style="margin-bottom: 15%;"></div>
+				<div>
+					<p>presentation made for <img src="img/HTML5_Logo_128.png" alt="Logo HTML5" style="width: 25%;">with presentr-template</p>
+					<p><a href="http://github.com/olsn/presentr">github.com/olsn/presentr</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ################################################ END SLIDES ################################################ -->
+	<!-- ############################################################################################################ -->
+</div>
 
 <script src="js/libs/jquery-1.7.1.min.js"></script>
 <script src="js/libs/cycle.min.js"></script>

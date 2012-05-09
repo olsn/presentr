@@ -22,13 +22,11 @@ function initialize() {
 	currentSlide = localStorage["currentSlide"] || getSlideFromURL();
 	numSlides = $('#slidesContainer .innerSlide').length;
 
-	$('.subSlide').each(function(i, value) {
-		$(this).css('visibility','hidden');
-	});
+	$('.subSlide').css('visibility','hidden');
 
 	$('.innerSlide').each(function(i, value) {
 		var noteElement = $(this).find('.note');
-		var note = noteElement.html() ? noteElement.html() : $(this).html();
+		var note = noteElement.html() ? noteElement.html() : 'No notes for slide: ' + i;
 		localStorage['note:'+i] = note;
 		localStorage['slide:'+i] = $(this).html();
 		if ( localStorage['presentrMode'] != '1') {
@@ -38,17 +36,26 @@ function initialize() {
 	localStorage['numSlides'] = numSlides;
 
 
+	//$('.innerSlide').fadeOut(0);
+	$('.innerSlide').animate({left: '15%', opacity: 0}, 0);
+	$('.innerSlide').hide();
 
-	slide = $('#slidesContainer').cycle({
+	/*slide = $('#slidesContainer').cycle({
 		fx: 'fadeHorizontal',
 		speed: 1000,
 		slideResize: 0,
 		containerResize: 0,
 		startingSlide: currentSlide,
 		timeout: 0 
-	});
+	});*/
 
 	localStorage['initRequest'] = '0';
+
+	var percent = ((currentSlide) / numSlides);
+	percent = ((currentSlide+(percent)) / numSlides);
+	percent = Math.max(1,Math.min(99,Math.round(percent*100)));
+	$('.progresspointer').css('left', percent + "%");
+	updateSlide(currentSlide, true);
 }
 
 function addListeners() {
@@ -98,10 +105,43 @@ function step(incr) {
 	}
 }
 
-function updateSlide(index) {
+function updateSlide(index, init) {
+
+	if ( !localStorage['presentrMode'] && (index >= numSlides || index < 0) ) {
+		return;
+	}
+
+	var dir = (index > currentSlide)? 0 : 15;
+	var adir = (index > currentSlide)? 15 : 0;
+
+	if ( !init ) {
+		$('.innerSlide').eq(currentSlide).stop(true, true).animate({left: dir + '%', opacity: 0}, 800, function() {$(this).hide()});
+	}
 	currentSlide = index;
-	$('#slidesContainer').cycle(currentSlide);
+
+	var $cslide = $('.innerSlide').eq(currentSlide);
+
+	if ( dir == 0 ) {
+		$cslide.find('.subSlide').each(function(i, value) {
+			$(this).fadeOut(0);
+			$(this).css('visibility', 'hidden');
+		});
+	} else {
+		$cslide.find('.subSlide').each(function(i, value) {
+			$(this).fadeIn(0);
+			$(this).css('visibility', 'visible');
+		});
+	}
+
+	$cslide.animate({left: adir + '%', opacity: 0}, 0);
+	$cslide.stop(true, true).animate({left: '10%', opacity: 1}, 800);
+	$cslide.show();
+
+	//$('#slidesContainer').cycle(currentSlide);
 	setURLIndex(currentSlide);
+	var percent = ((currentSlide) / numSlides);
+	percent = ((currentSlide+(percent)) / numSlides);
+	$('.progresspointer').stop(true, true).animate({left: Math.max(1,Math.min(99,Math.round(percent*100))) + "%"}, 900);
 }
 
 function checkForPresentr() {
@@ -173,15 +213,50 @@ function onResize(e) {
 
 
 	$('#main').css('margin-top', $(window).height() * 0.08);
-	$('#slidesContainer').width($(window).width() * 0.60);
+	$('#slidesContainer').width($(window).width() * 0.80);
 	$('#slidesContainer').height($(window).height() * 0.9);
 
 	$('h1').each(function(i, value) {
-		$(this).css('font-size', (14*s) + 'mm');
+		$(this).css('font-size', (46*s) + 'px');
 	});
 
 	$('li').each(function(i, value) {
-		$(this).css('font-size', (10*s) + 'mm');
-		$(this).css('line-height', (24*s) + 'mm');
+		$(this).css('font-size', (36*s) + 'px');
+		$(this).css('line-height', (98*s) + 'px');
+	});
+
+	$('p').each(function(i, value) {
+		$(this).css('font-size', 20*s + 'px');
+		$(this).css('line-height', 26*s + 'px');
+	});
+
+	$('.size1').each(function(i, value) {
+		$(this).css('font-size', 22*s + 'px');
+		$(this).css('line-height', 26*s + 'px');
+	});
+
+	$('.size1-2').each(function(i, value) {
+		$(this).css('font-size', 22*s + 'px');
+		$(this).css('line-height', 32*s + 'px');
+	});
+
+	$('.size2').each(function(i, value) {
+		$(this).css('font-size', 26*s + 'px');
+		$(this).css('line-height', 36*s + 'px');
+	});
+
+	$('.size2-4').each(function(i, value) {
+		$(this).css('font-size', 26*s + 'px');
+		$(this).css('line-height', 50*s + 'px');
+	});
+
+	$('.size3').each(function(i, value) {
+		$(this).css('font-size', 30*s + 'px');
+		$(this).css('line-height', 36*s + 'px');
+	});
+
+	$('#agenda li').each(function(i, value) {
+		$(this).css('font-size', (38*s) + 'px');
+		$(this).css('line-height', (75*s) + 'px');
 	});
 }

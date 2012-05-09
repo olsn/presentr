@@ -7,26 +7,37 @@
   color: #dbdbdb;
   text-shadow: #111111 0px 0px 9px;
   overflow: hidden;
+  -moz-user-select: none;
+  -webkit-user-select: none;
 }
 
 .presentation {
-  background-image: url('../img/background.jpg');
-  background-size: 100%;
+  /*background-image: url('../img/background.jpg');
+  background-size: 100%;*/
 }
 
 #slidesContainer {
-  width: 70%;
+  position: relative;
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
-  top: 25px;
+  top: 15px;
   bottom: 25px;
   overflow: visible !important;
 }
 
 .innerSlide {
-  margin: auto;
-  top: 45px;
+  position: absolute;
+  width: 80%;
+  /*left: 35%;*/
+  top: 0px;
   text-align: left;
+}
+
+.shadow {
+  -moz-box-shadow: 0 0 4mm 0mm #000000;
+  -webkit-box-shadow: 0 0 4mm 0mm #000000;
+  box-shadow: 0 0 4mm 0mm #000000;
 }
 
 .note {
@@ -35,17 +46,59 @@
   display: none;
 }
 
+.progress {
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  top: 15px;
+  height: 5px;
+  overflow: hidden;
+  border: solid 1px #444;
+  background: #9f9f9f;
+}
+
+.progress div {
+  height: 15px;
+  float:left;
+  margin-left: 2px;
+}
+
+.progresspointer {
+  position: absolute;
+  left: 0%;
+  top: 11px;
+  height: 11px;
+  width: 11px;
+  border: 2px solid #fff;
+  opacity: 0.65;
+  -moz-opacity: 0.65;
+  filter:alpha(opacity=65);
+  border-radius: 8px;
+}
+
+#agena {
+  line-height: 16mm;
+}
+
 h1 {
   font-weight: normal;
   font-size: 14mm;
 }
 
 ul {
-  margin-left: 8mm;
+  margin-left: 14mm;
 }
 
 li {
   color: #dbdbdb;
   font-size: 10mm;
   line-height: 24mm;
+}
+
+iframe {
+  overflow: hidden;
+  width: 100%;
+  height: 80%;
+  margin-left: 0%;
+  border: 0;
 }
