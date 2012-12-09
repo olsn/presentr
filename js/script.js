@@ -103,6 +103,13 @@ function step(incr) {
 			if ( i == currentSlide ) {
 				$(this).find('.subSlide').each(function(i, value) {
 					if ( !elementStillHidden && $(this).css('visibility') != 'visible') {
+						if ( $(this).hasClass('singleSubSlide') ) {
+							var _this = this;
+							$(this).parent().find('.subSlide').each(function(i, value) {
+								if ( this != _this ) $(this).fadeOut();
+							});
+						}
+
 						$(this).fadeOut(0);
 						$(this).fadeIn();
 						$(this).css('visibility', 'visible');
@@ -228,6 +235,8 @@ function onResize(e) {
 	$('#main').css('margin-top', $(window).height() * 0.08);
 	$('#slidesContainer').width($(window).width() * 0.80);
 	$('#slidesContainer').height($(window).height() * 0.9);
+
+	s *= 0.8;
 
 	$('h1').each(function(i, value) {
 		$(this).css('font-size', (46*s) + 'px');
